@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simple_grocery/features/login/login_page.dart';
+
+import 'login/login_page.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
