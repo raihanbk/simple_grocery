@@ -4,31 +4,31 @@ class GroceryData {
       'name': 'Milk',
       'price': 2.99,
       'description': 'Dairy',
-      'img': ''},
+      'img': 'https://as1.ftcdn.net/v2/jpg/01/06/68/88/1000_F_106688812_rVoRFXazgIMEUJdvffG9p0XvP8Lntf0a.jpg'},
     {
       'id': '2',
       'name': 'Bread',
       'price': 1.99,
       'description': 'Bakery',
-      'img': ''
+      'img': 'https://www.bigbasket.com/media/uploads/p/m/40037465_1-fresho-white-big-bread-slices-safe-preservative-free.jpg'
     },
     {'id': '3',
       'name': 'Eggs',
       'price': 3.49,
       'description': 'Dairy',
-      'img': ''},
+      'img': 'https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg'},
     {
       'id': '4',
       'name': 'Cheese',
       'price': 4.99,
       'description': 'Dairy',
-      'img': ''
+      'img': 'https://media.istockphoto.com/id/184995489/photo/american-cheese-slices.jpg?s=612x612&w=0&k=20&c=2eIGWPftb2qZNFeHV_szGsbHaW5p6w5g51xpSWowAn4='
     },
     {'id': '5',
       'name': 'Rice',
       'price': 2.50,
       'description': 'Grains',
-      'img': ''},
+      'img': 'https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c='},
 
     // {'name': 'Pasta', 'price': 1.75, 'category': 'Grains'},
     // {'name': 'Chicken', 'price': 5.99, 'category': 'Meat'},

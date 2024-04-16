@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:simple_grocery/features/home/ui/home.dart';
-import 'package:simple_grocery/features/welcome.dart';
 
 void main() {
   runApp(const MyApp());
