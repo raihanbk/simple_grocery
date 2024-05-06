@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_grocery/utils/color_constants.dart';
 
 import 'login_page.dart';
 
@@ -20,8 +21,8 @@ Widget buttons(BuildContext context,
     margin: const EdgeInsets.only(left: 60, right: 60),
     width: MediaQuery.of(context).size.width,
     decoration: BoxDecoration(
-      color: Colors.teal,
-      border: Border.all(color: Colors.grey),
+      color: MyColors.primaryColor,
+      border: Border.all(color: Colors.grey.shade300),
       borderRadius: BorderRadius.circular(20),
     ),
     child: TextButton(

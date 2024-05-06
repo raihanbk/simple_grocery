@@ -19,42 +19,51 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<NavigateToCartPageEvent>(navigateToCartPageEvent);
     on<WishListButtonClickedEvent>(wishListButtonClickedEvent);
     on<CartButtonClickedEvent>(cartButtonClickedEvent);
+    on<RemoveItemFromWishlistEvent>(removeItemFromWishlistEvent);
+    on<RemoveItemFromCartEvent>(removeItemFromCartEvent);
   }
 
-  FutureOr<void> initialEvent(
-      InitialEvent event, Emitter<HomeState> emit) async {
+  FutureOr<void> initialEvent(InitialEvent event,
+      Emitter<HomeState> emit) async {
     emit(LoadingState());
-    await Future.delayed(const Duration(seconds: 3));
-    emit(LoadedState(
-        products: GroceryData.groceryItems
-            .map((e) => ProductDataModel(
-                id: e['id'],
-                name: e['name'],
-                description: e['description'],
-                img: e['img'],
-                price: e['price']))
-            .toList()));
+    await Future.delayed(const Duration(seconds: 1));
+    emit(LoadedState());
   }
 
-  FutureOr<void> navigateToWishListPageEvent(
-      NavigateToWishListPageEvent event, Emitter<HomeState> emit) {
+  FutureOr<void> navigateToWishListPageEvent(NavigateToWishListPageEvent event,
+      Emitter<HomeState> emit) {
     emit(NavigateToWishListPageActionState());
   }
 
-  FutureOr<void> navigateToCartPageEvent(
-      NavigateToCartPageEvent event, Emitter<HomeState> emit) {
+  FutureOr<void> navigateToCartPageEvent(NavigateToCartPageEvent event,
+      Emitter<HomeState> emit) {
     emit(NavigateToCartPageActionState());
   }
 
-  FutureOr<void> wishListButtonClickedEvent(
-      WishListButtonClickedEvent event, Emitter<HomeState> emit) {
+  FutureOr<void> wishListButtonClickedEvent(WishListButtonClickedEvent event,
+      Emitter<HomeState> emit) {
     wishlistItems.add(event.clickedProduct);
+    print('Item added to wishlist');
     emit(ItemWishListedActionState());
   }
 
-  FutureOr<void> cartButtonClickedEvent(
-      CartButtonClickedEvent event, Emitter<HomeState> emit) {
+  FutureOr<void> cartButtonClickedEvent(CartButtonClickedEvent event,
+      Emitter<HomeState> emit) {
     cartItems.add(event.clickedProduct);
-    emit(ItemCartedActionState());
+    print("added");
+     emit(ItemCartedActionState());
+  }
+
+  FutureOr<void> removeItemFromWishlistEvent(
+      RemoveItemFromWishlistEvent event, Emitter<HomeState> emit) {
+    wishlistItems.remove(event.clickedProduct);
+    print('Item removed from wishlist');
+    emit(ItemRemovedFromWishlistActionState());
+  }
+
+  FutureOr<void> removeItemFromCartEvent(
+      RemoveItemFromCartEvent event, Emitter<HomeState> emit) {
+    cartItems.remove(event.clickedProduct);
+    emit(ItemRemovedFromCartActionState());
   }
 }

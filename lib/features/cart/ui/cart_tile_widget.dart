@@ -1,73 +1,71 @@
 import 'package:flutter/material.dart';
-import 'package:simple_grocery/features/home/bloc/home_bloc.dart';
 import 'package:simple_grocery/features/home/models/home_product_data_model.dart';
-
 import '../bloc/cart_bloc.dart';
 
-class CartTileWidget extends StatelessWidget {
+class CartTileWidget extends StatefulWidget {
   final ProductDataModel productDataModel;
   final CartBloc cartBloc;
 
-  const CartTileWidget(
-      {super.key, required this.productDataModel, required this.cartBloc});
+  const CartTileWidget({
+    super.key,
+    required this.productDataModel,
+    required this.cartBloc,
+  });
+
+  @override
+  State<CartTileWidget> createState() => _CartTileWidgetState();
+}
+
+class _CartTileWidgetState extends State<CartTileWidget> {
+  int productCount = 1;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.only(top: 10, left: 10, bottom: 10, right: 0),
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.circular(10)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 200,
-            width: double.maxFinite,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(productDataModel.img),
-                    fit: BoxFit.cover)),
+      child: ListTile(
+        leading: Image.network(
+          widget.productDataModel.img,
+        ),
+        title: Text(
+          widget.productDataModel.name,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          Text(
-            productDataModel.name,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          Text(productDataModel.description),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Text(
-              '\$ ${productDataModel.price}',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      cartBloc.add(RemoveFromCartEvent(
-                          productDataModel: productDataModel));
-                    },
-                    icon: const Icon(
-                      Icons.remove_shopping_cart,
-                    )),
-                MaterialButton(
-                  onPressed: () {
+        ),
+        // subtitle: Text(widget.productDataModel.description),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              onPressed: () {
+                widget.cartBloc.add(RemoveFromCartEvent(
+                    productDataModel: widget.productDataModel));
+                setState(() {
+                  productCount--;
 
-                  },
-                  color: Colors.green,
-                  textColor: Colors.white,
-                  shape: const StadiumBorder(),
-                  child: const Text(
-                    'Buy Now',
-                  ),
-                )
-              ],
-            )
-          ])
-        ],
+                });
+              },
+              icon: const Icon(Icons.remove),
+            ),
+            Text(productCount.toString()),
+            IconButton(
+              onPressed: () {
+                widget.cartBloc.add(AddProductToCartFromCartEvent(
+                    productDataModel: widget.productDataModel));
+                setState(() {
+                  productCount++;
+                });
+              },
+              icon: const Icon(Icons.add),
+            ),
+            Text('₹${(productCount * widget.productDataModel.price).toStringAsFixed(2)}')
+          ],
+        ),
       ),
     );
   }

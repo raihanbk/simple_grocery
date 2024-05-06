@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../login/login_widget.dart';
@@ -58,10 +59,19 @@ class _SignUpState extends State<SignUp> {
                   const SizedBox(
                     height: 25,
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(right: 200),
-                    child: const Text('Not a member! Sign-up'),
-                  ),
+                  RichText(
+                    text: TextSpan(
+                        text: 'Already have an account!  ',
+                        style: TextStyle(color: Colors.black),
+                        children: [
+                          TextSpan(
+                              text: 'Sign in',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            recognizer: TapGestureRecognizer()..onTap = ()=> Navigator.pop(context))
+                        ]),
+                  )
                 ],
               ),
             ),

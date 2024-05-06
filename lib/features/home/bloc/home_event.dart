@@ -11,8 +11,17 @@ class NavigateToCartPageEvent extends HomeEvent {}
 
 class WishListButtonClickedEvent extends HomeEvent {
   final ProductDataModel clickedProduct;
-
   WishListButtonClickedEvent({required this.clickedProduct});
+}
+
+class RemoveItemFromWishlistEvent extends HomeEvent {
+  final ProductDataModel clickedProduct;
+  RemoveItemFromWishlistEvent({required this.clickedProduct});
+}
+
+class RemoveItemFromCartEvent extends HomeEvent {
+  final ProductDataModel clickedProduct;
+  RemoveItemFromCartEvent({required this.clickedProduct});
 }
 
 class CartButtonClickedEvent extends HomeEvent {

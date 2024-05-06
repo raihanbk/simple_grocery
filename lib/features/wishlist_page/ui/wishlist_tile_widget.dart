@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simple_grocery/features/home/bloc/home_bloc.dart';
 import 'package:simple_grocery/features/home/models/home_product_data_model.dart';
+import 'package:simple_grocery/features/home/ui/product_detailed_page.dart';
 
 import '../bloc/wishlist_bloc.dart';
 
@@ -21,13 +23,21 @@ class WishlistTileWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 200,
-            width: double.maxFinite,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(productDataModel.img),
-                    fit: BoxFit.cover)),
+          InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) =>
+                  ProductDetails(
+                    scaffoldContext: context,
+                      productDataModel: productDataModel, homeBloc: HomeBloc())));
+            },
+            child: Container(
+              height: 200,
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(productDataModel.img),
+                      fit: BoxFit.cover)),
+            ),
           ),
           const SizedBox(
             height: 20,

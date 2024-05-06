@@ -3,7 +3,8 @@ class ProductDataModel {
   final String name;
   final String description;
   final String img;
-  final double price;
+  final num price;
+  final String? oldPrice;
 
   ProductDataModel(
       {required this.id,
@@ -11,5 +12,17 @@ class ProductDataModel {
       required this.description,
       required this.img,
       required this.price,
+      this.oldPrice,
       });
+
+  factory ProductDataModel.fromMap(Map<String, dynamic> map) {
+    return ProductDataModel(
+      id: map['id'],
+      name: map['name'],
+      price: map['price'],
+      oldPrice: map['oldPrice'],
+      description: map['description'],
+      img: map['img'],
+    );
+  }
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simple_grocery/features/home/ui/home.dart';
+import 'package:simple_grocery/features/routes/routes.dart';
+import 'package:simple_grocery/utils/color_constants.dart';
 
 import 'login/login_page.dart';
 
@@ -17,9 +20,9 @@ class Welcome extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.only(left: 100),
+                  padding: const EdgeInsets.only(left: 50),
                   child: const Text(
-                    'Get the',
+                    'Your go-to',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                   ),
                 ),
@@ -27,7 +30,7 @@ class Welcome extends StatelessWidget {
                   width: 10,
                 ),
                 Text(
-                  'Fastest',
+                  'destination',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
@@ -36,11 +39,11 @@ class Welcome extends StatelessWidget {
               ],
             ),
             const Text(
-              'Delivery Groceries',
+              'for fresh groceries at',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
             ),
             Text(
-              'at home',
+              'your fingertips',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
@@ -53,21 +56,19 @@ class Welcome extends StatelessWidget {
               margin: const EdgeInsets.only(left: 60, right: 60),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                color: Colors.green,
-                border: Border.all(color: Colors.grey),
+                color: MyColors.primaryColor,
+                border: Border.all(color: Colors.grey.shade200),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginScreen(),
-                    ),
-                  );
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (_) => const Routes()),
+                      (route) => false);
                 },
                 child: const Text(
-                  'Get Started',
+                  'Start shopping now! -->',
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,

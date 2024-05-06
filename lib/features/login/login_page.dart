@@ -70,8 +70,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 25,
               ),
               Container(
-                margin: const EdgeInsets.only(right: 200),
-                child: const Text('Not a member! Sign-up'),
+                margin: const EdgeInsets.only(right: 180),
+                child: const Text('Not a member! Register here'),
               ),
               buttons(context, label: 'Sign-up', onPressed: () {
                 Navigator.push(context,
